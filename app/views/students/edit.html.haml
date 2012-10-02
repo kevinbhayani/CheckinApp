@@ -1,0 +1,14 @@
+%h2 Edit Student
+
+= form_tag students_path(@student), :method => :put do
+
+  = label :student, :name, 'Name'
+  = text_field :student, :name
+
+  = label :student, :age, 'Age'
+  = text_field :student, :age
+
+  = label :student, :checkin_date, 'Checked In On'
+  = date_select :student, :checkin_date
+
+  = button_to 'Delete', student_path(@student), :method => :delete, :confirm => 'Are you sure?'

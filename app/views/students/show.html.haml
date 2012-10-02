@@ -1,0 +1,20 @@
+-# in app/views/movies/show.html.haml
+
+%h2 Details about #{@student.name}
+
+%ul#details
+  %li
+    Age:
+    = @student.age
+
+  %li
+    Checked In on:
+    = @student.checkin_date.strftime("%B %d, %Y")
+
+%h3 Description:
+
+%p#description= @student.description
+
+= link_to 'Edit info', edit_student_path(@student)
+= link_to 'Back to student list', students_path
+= link_to 'Delete', student_path(@student), :method => :delete
