@@ -1,3 +1,5 @@
+require 'json'
+
 class StudentsController < ApplicationController
   def index
       @students = Student.all
@@ -13,6 +15,9 @@ class StudentsController < ApplicationController
   end
 
   def create
+    #jsonStudent = params[:newStudent]
+    #parsedStudent = JSON.parse jsonStudent
+
     @student = Student.create!(params[:student])
     flash[:notice] = "#{@student.name} was successfully created."
     redirect_to students_path

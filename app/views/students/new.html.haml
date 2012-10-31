@@ -5,10 +5,30 @@
   = label :student, :name, 'Name'
   = text_field :student, :name
 
-  = label :student, :age, 'Age'
-  = text_field :student, :age
+  = label :student, :grade, 'Grade'
+  = text_field :student, :grade
 
-  = label :student, :checkin_date, 'Checked In On'
-  = date_select :student, :checkin_date
+  = label :student, :birthday, 'Birthdate'
+  = date_select :student, :birthday, :start_year => 1900
+
+  = label :student, :notes, 'Notes'
+  = text_field :student, :notes
+
+
+  = label :contact, :name, 'Contact\'s Name'
+  = text_field :contact, :name
+
+  = label :contact, :phone, 'Contact\'s Phone Number'
+  = telephone_field :contact, :phone
+
+
+  = label :parent, :name, 'Parent\'s Name'
+  = text_field :parent, :name
+
+  = label :parent, :address, 'Parent\'s Address'
+  = text_field :parent, :address
+
+  = label :parent, :phone, 'Parent\'s Phone'
+  = telephone_field :parent, :phone
 
   = submit_tag 'Save Changes'

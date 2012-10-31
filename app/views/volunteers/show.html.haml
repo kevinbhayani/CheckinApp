@@ -1,0 +1,12 @@
+%h2 Details about #{@volunteer.name}
+
+%ul#details
+  %li
+    PIN:
+    = @volunteer.pin
+
+%h3 Description:
+
+= link_to 'Edit info', edit_volunteer_path(@volunteer)
+= link_to 'Back to volunteer list', volunteers_path
+= link_to 'Delete', volunteer_path(@volunteer), :method => :delete

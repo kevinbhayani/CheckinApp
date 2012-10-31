@@ -11,4 +11,5 @@
   = label :student, :checkin_date, 'Checked In On'
   = date_select :student, :checkin_date
 
-  = button_to 'Delete', student_path(@student), :method => :delete, :confirm => 'Are you sure?'
+  = button_to 'Update', student_path(@student), :method => :update
+ 

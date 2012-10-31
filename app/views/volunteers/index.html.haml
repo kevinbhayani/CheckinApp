@@ -1,0 +1,16 @@
+-#  This file is app/views/movies/index.html.haml
+%h2 All Volunteers
+
+%table#volunteers
+  %thead
+    %tr
+      %th Volunteer Name
+      %th PIN
+      %th More Info
+  %tbody
+    - @volunteers.each do |volunteer|
+      %tr
+        %td= volunteer.name
+        %td= volunteer.pin
+        %td= link_to "More about #{volunteer.name}", volunteer_path(volunteer)
+= link_to 'Add new volunteer', new_volunteer_path

@@ -1,0 +1,11 @@
+%h2 Edit Volunteer
+
+= form_tag volunteer_path(@volunteer), :method => :put do
+
+  = label :volunteer, :name, 'Name'
+  = text_field :volunteer, :name
+
+  = label :volunteer, :pin, 'PIN'
+  = text_field :volunteer, :pin
+
+  = button_to 'Update', volunteer_path(@volunteer), :method => :update

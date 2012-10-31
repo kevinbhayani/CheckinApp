@@ -1,0 +1,11 @@
+%h2 Create New Volunteer
+
+= form_tag volunteers_path, :method => :post do
+
+  = label :volunteer, :name, 'Name'
+  = text_field :volunteer, :name
+
+  = label :volunteer, :pin, 'PIN'
+  = text_field :volunteer, :pin
+
+  = submit_tag 'Save Changes'
