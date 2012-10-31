@@ -40,4 +40,15 @@ class VolunteersController < ApplicationController
     redirect_to volunteers_path
     flash[:notice] = "Volunteer '#{@volunteer.name}' deleted."
   end
+
+  def login
+    pin = params[:pin].to_i
+    name = params[:name]
+    @volunteer = Volunteer.find_by_name(name)
+    if @volunteer.pin == pin
+      render :text => "correct"
+    else
+      render :text => "incorrect"
+    end
+  end
 end
