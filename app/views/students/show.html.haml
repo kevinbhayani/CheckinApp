@@ -4,16 +4,37 @@
 
 %ul#details
   %li
-    Age:
-    = @student.age
+    Grade:
+    = @student.grade
 
   %li
-    Checked In on:
-    = @student.checkin_date.strftime("%B %d, %Y")
+    Born on:
+    = @student.birthdate.strftime("%B %d, %Y")
 
-%h3 Description:
+%h3 Parent:
+%ul#parent
+  %li 
+    Name: 
+    = @student.parentName
+  %li 
+    Phone: 
+    = @student.parentPhone
+  %li 
+    Address:  
+    = @student.parentAddress
 
-%p#description= @student.description
+%h3 Emergency Contact:
+%ul#contact
+  %li 
+    Name: 
+    = @student.contactName
+  %li 
+    Phone: 
+    = @student.contactPhone
+
+%h3 Notes:
+
+%p#description= @student.notes
 
 = link_to 'Edit info', edit_student_path(@student)
 = link_to 'Back to student list', students_path

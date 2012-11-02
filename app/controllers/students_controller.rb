@@ -15,9 +15,6 @@ class StudentsController < ApplicationController
   end
 
   def create
-    #jsonStudent = params[:newStudent]
-    #parsedStudent = JSON.parse jsonStudent
-
     @student = Student.create!(params[:student])
     flash[:notice] = "#{@student.name} was successfully created."
     redirect_to students_path
@@ -40,4 +37,16 @@ class StudentsController < ApplicationController
     flash[:notice] = "#{@student.name} was successfully updated."
     redirect_to student_path(@student)
   end
+
+  def getStudents
+    @students = Student.all
+    #jsonArray = JSON.
+    render :text => jsonArray
+  end
+
+  def newStudent
+    #jsonStudent = params[:newStudent]
+    #parsedStudent = JSON.parse jsonStudent
+  end
+
 end

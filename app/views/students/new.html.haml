@@ -8,27 +8,27 @@
   = label :student, :grade, 'Grade'
   = text_field :student, :grade
 
-  = label :student, :birthday, 'Birthdate'
-  = date_select :student, :birthday, :start_year => 1900
+  = label :student, :birthdate, 'Birthdate'
+  = date_select :student, :birthdate, :start_year => 1900
 
   = label :student, :notes, 'Notes'
   = text_field :student, :notes
 
 
-  = label :contact, :name, 'Contact\'s Name'
-  = text_field :contact, :name
+  = label :student, :contactName, 'Contact\'s Name'
+  = text_field :student, :contactName
 
-  = label :contact, :phone, 'Contact\'s Phone Number'
-  = telephone_field :contact, :phone
+  = label :student, :contactPhone, 'Contact\'s Phone Number'
+  = telephone_field :student, :contactPhone
 
 
-  = label :parent, :name, 'Parent\'s Name'
-  = text_field :parent, :name
+  = label :student, :parentName, 'Parent\'s Name'
+  = text_field :student, :parentName
 
-  = label :parent, :address, 'Parent\'s Address'
-  = text_field :parent, :address
+  = label :student, :parentAddress, 'Parent\'s Address'
+  = text_field :student, :parentAddress
 
-  = label :parent, :phone, 'Parent\'s Phone'
-  = telephone_field :parent, :phone
+  = label :student, :parentPhone, 'Parent\'s Phone'
+  = telephone_field :student, :parentPhone
 
   = submit_tag 'Save Changes'
