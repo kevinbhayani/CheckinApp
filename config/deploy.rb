@@ -1,3 +1,5 @@
+default_run_options[:pty] = true
+
 set :domain, 'csserver.evansville.edu'
 set :application, "friedcheckin"
 set :repository,  "friedcheckin@csserver.evansville.edu:/usr/local/git/friedcheckinserver.git"
