@@ -34,6 +34,6 @@ gem 'capistrano'
 # use Haml for templates
 gem 'haml'
 # use Ruby debugger 
-group :development, :test do
-   gem 'ruby-debug19'
-end
+#group :development, :test do
+#   gem 'ruby-debug19'
+#end

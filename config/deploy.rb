@@ -6,7 +6,7 @@ set :repository,  "friedcheckin@csserver.evansville.edu:/usr/local/git/friedchec
 set :deploy_to, '/usr/local/friedcheckin'
 
 set :scm, 'git'
-set :branch, 'deploy'
+set :branch, 'master'
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 role :web, "csserver.evansville.edu"                          # Your HTTP server, Apache/etc
