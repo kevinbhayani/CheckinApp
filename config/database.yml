@@ -24,7 +24,7 @@ production:
   reconnect: false
   database: friedcheckin
   pool: 5
-  username: friedcheckin
-  password: kfc
+  username: colonel
+  password: KFC
   host: csserver.evansville.edu
   socket: /tmp/mysql.sock
