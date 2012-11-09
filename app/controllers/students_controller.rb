@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
   end
 
   def new
-#default: render 'new' template
+    #default: render 'new' template
   end
 
   def create
@@ -28,7 +28,7 @@ class StudentsController < ApplicationController
     @student = Student.find params[:id]
     @student.destroy
     flash[:notice] = "Student '#{@student.name}' deleted."
-    redirect_to student_path
+    redirect_to students_path
   end
 
   def update
