@@ -2,7 +2,7 @@ require 'json'
 
 class StudentsController < ApplicationController
   def index
-      @students = Student.all
+      @students = Student.all({:order => params[:sort]}) 
   end
 
   def show
@@ -28,7 +28,7 @@ class StudentsController < ApplicationController
     @student = Student.find params[:id]
     @student.destroy
     flash[:notice] = "Student '#{@student.name}' deleted."
-    redirect_to student_path
+    redirect_to students_path
   end
 
   def update
