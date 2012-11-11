@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
   end
 
   def new
-#default: render 'new' template
+    #default: render 'new' template
   end
 
   def create
