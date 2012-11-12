@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  time: 2012-11-12 14:57:28
+  students: MyText
+
+two:
+  name: MyString
+  time: 2012-11-12 14:57:28
+  students: MyText

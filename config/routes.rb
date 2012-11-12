@@ -1,4 +1,6 @@
 Friedcheckin::Application.routes.draw do
+  resources :events
+
   resources :students 
   resources :volunteers
   match ':controller(/:action(/:name/:pin))'
