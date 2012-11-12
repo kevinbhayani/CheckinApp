@@ -1,7 +1,6 @@
 require 'json'
 
 class StudentsController < ApplicationController
-
   def index
       @students = Student.all({:order => params[:sort]}) 
   end
