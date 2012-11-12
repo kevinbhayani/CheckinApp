@@ -4,7 +4,7 @@
 %table#students
   %thead
     %tr
-      %th Student Name
+      %th= link_to "Student Name", students_path({:sort => "name"})
       %th More Info
   %tbody
     - @students.each do |student|
