@@ -1,4 +1,7 @@
 Friedcheckin::Application.routes.draw do
+#devise_for :users
+  devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
+
   resources :students 
   resources :volunteers
   match ':controller(/:action(/:name/:pin))'
