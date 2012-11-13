@@ -2,6 +2,7 @@
 
 one:
   name: MyString
+<<<<<<< HEAD
   time: 2012-11-12 14:20:23
   students: 
 
@@ -9,3 +10,12 @@ two:
   name: MyString
   time: 2012-11-12 14:20:23
   students: 
+=======
+  time: 2012-11-12 14:57:28
+  students: MyText
+
+two:
+  name: MyString
+  time: 2012-11-12 14:57:28
+  students: MyText
+>>>>>>> 526777241f19b950f3081fb7e85580ea57918682
