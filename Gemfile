@@ -41,3 +41,4 @@ gem 'haml'
 #   gem 'ruby-debug19'
 #end
 gem 'devise'
+gem "browser"

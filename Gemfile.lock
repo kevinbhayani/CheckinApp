@@ -32,6 +32,7 @@ GEM
       multi_json (~> 1.0)
     arel (2.2.3)
     bcrypt-ruby (3.0.1)
+    browser (0.1.5)
     builder (3.0.3)
     capistrano (2.13.5)
       highline
@@ -135,6 +136,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  browser
   capistrano
   coffee-rails (~> 3.1.0)
   devise

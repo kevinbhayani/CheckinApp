@@ -13,6 +13,8 @@
     - else
       = link_to('Login', new_user_session_path)
 
+    = @secure
+
     - if flash[:notice]
       #notice.message= flash[:notice]
     - elsif flash[:warning]
