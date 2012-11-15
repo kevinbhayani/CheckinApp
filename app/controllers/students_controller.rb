@@ -1,3 +1,4 @@
+#student_controller
 require 'json'
 
 class StudentsController < ApplicationController
