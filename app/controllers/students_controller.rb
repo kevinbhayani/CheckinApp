@@ -6,8 +6,16 @@ class StudentsController < ApplicationController
 respond_to :html, :json
   
   def index
+    browser = Browser.new(:ua => request.user_agent)
+    if browser.mobile? or browser.name == "Other"
+      
+      json = JSON.pretty_generate(@students.map {|i| i.attributes })
+      
+      respond_with json      
+    else
       @students = Student.all({:order => params[:sort]}) 
       respond_with @students
+    end    
   end
 
   def show
