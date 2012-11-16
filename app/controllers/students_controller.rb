@@ -1,5 +1,5 @@
 #student_controller
-require 'json'
+require 'json/pure'
 require 'browser'
 
 class StudentsController < ApplicationController
@@ -11,8 +11,19 @@ respond_to :html, :json
   end
 
   def show
-    id = params[:id]
-    @student = Student.find(id)
+    browser = Browser.new(:ua => request.user_agent)
+    if browser.mobile? or browser.name == "Other"
+      id = request.body.read
+      @student = Student.find(id)
+      json = JSON.pretty_generate(@student.attributes)
+      
+      respond_with json      
+    else
+      id = params[:id]
+      @student = Student.find(id)
+      #json = JSON.pretty_generate(@student.attributes)
+      #render :text => json#@student.attributes
+    end    
   end
 
   def new
