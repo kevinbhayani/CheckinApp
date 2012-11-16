@@ -7,11 +7,12 @@ respond_to :html, :json
   
   def index
     browser = Browser.new(:ua => request.user_agent)
-    if browser.mobile? or browser.name == "Other"
+    if browser.android? or browser.name == "Other"
       
       json = JSON.pretty_generate(@students.map {|i| i.attributes })
       
-      respond_with json      
+      render :text => json
+      #respond_with json  
     else
       @students = Student.all({:order => params[:sort]}) 
       respond_with @students
@@ -20,12 +21,13 @@ respond_to :html, :json
 
   def show
     browser = Browser.new(:ua => request.user_agent)
-    if browser.mobile? or browser.name == "Other"
+       if browser.android? or browser.name == "Other"
       id = request.body.read
       @student = Student.find(id)
       json = JSON.pretty_generate(@student.attributes)
       
-      respond_with json      
+      render :text => json
+      #respond_with json      
     else
       id = params[:id]
       @student = Student.find(id)
@@ -43,7 +45,7 @@ respond_to :html, :json
     #logger.debug request.user_agent
 
     browser = Browser.new(:ua => request.user_agent)
-    if browser.mobile? or browser.name == "Other"
+    if browser.android? or browser.name == "Other"
       student_info = JSON.parse(request.body.read)
       #Need to optimize this
       #Will have to change json key names or database table names
@@ -93,13 +95,10 @@ respond_to :html, :json
 
   def getStudents
     @students = Student.all
-    #jsonArray = JSON.
     render :text => jsonArray
   end
 
   def newStudent
-    #jsonStudent = params[:newStudent]
-    #parsedStudent = JSON.parse jsonStudent
   end
 
 end
