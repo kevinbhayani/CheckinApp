@@ -1,5 +1,5 @@
 #student_controller
-require 'json/pure'
+require 'json'
 require 'browser'
 
 class StudentsController < ApplicationController
@@ -14,7 +14,8 @@ respond_to :html, :json
       render :text => json
       #respond_with json  
     else
-      @students = Student.all({:order => params[:sort]}) 
+      @students = Student.all({:order => params[:sort]})
+      @events = Event.all
       respond_with @students
     end    
   end
@@ -91,6 +92,16 @@ respond_to :html, :json
     @student.update_attributes!(params[:student])
     flash[:notice] = "#{@student.name} was successfully updated."
     redirect_to student_path(@student)
+  end
+
+  def studentsList
+    @event = Event.find(params[:id])
+    @students = @event.students
+    @events = Event.all
+    logger.debug "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    logger.debug @students
+    #respond_with(@students)
+  render 'index'    
   end
 
   def getStudents

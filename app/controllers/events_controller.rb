@@ -1,13 +1,17 @@
+require 'json'
+
 class EventsController < ApplicationController
+respond_to :json, :html
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json=> @events }
-    end
+#    respond_to do |format|
+#      format.html # index.html.erb
+#      format.json { render :json=> @events }
+#    end
+    respond_with @events
   end
 
   # GET /events/1
@@ -40,17 +44,25 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(params[:event])
+ 
+    event_info = JSON.parse(request.body.read) 
+ 
+    event_json = event_info.reject {|key,value| key == "students"}
+    
+    @event = Event.create!(event_json)
+    
+    respond_with @event
+#    @event = Event.new(params[:event])
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, :notice=> 'Event was successfully created.' }
-        format.json { render :json=> @event, :status=> :created, :location=> @event }
-      else
-        format.html { render :action=> "new" }
-        format.json { render :json=> @event.errors, :status=> :unprocessable_entity }
-      end
-    end
+#    respond_to do |format|
+#      if @event.save
+#        format.html { redirect_to @event, :notice=> 'Event was successfully created.' }
+#        format.json { render :json=> @event, :status=> :created, :location=> @event }
+#      else
+#        format.html { render :action=> "new" }
+#        format.json { render :json=> @event.errors, :status=> :unprocessable_entity }
+#      end
+#    end
   end
 
   # PUT /events/1
@@ -80,4 +92,12 @@ class EventsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def eventsList
+    @student = Student.find(params[:id])
+    @events = @student.events
+    logger.debug "pppppppppppppppppppppppppppppppp"
+    logger.debug @events
+  end
+  
 end
