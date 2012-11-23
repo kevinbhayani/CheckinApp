@@ -1,35 +1,43 @@
-class EventsController < ApplicationController
-  # GET /events
-  # GET /events.json
-  def index
-    @events = Event.all
+require 'json/pure'
+require 'browser'
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json=> @events }
+class EventsController < ApplicationController
+respond_to :html, :json
+  def index
+    browser = Browser.new(:ua => request.user_agent)
+    @events = Event.all
+    if browser.android? or browser.name == "Other"
+      json = JSON.pretty_generate(@events.map {|i| i.attributes })
+      
+      render :text => json
+    else
+      respond_with @events
     end
   end
 
-  # GET /events/1
-  # GET /events/1.json
   def show
     @event = Event.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json=> @event }
+    browser = Browser.new(:ua => request.user_agent)
+    if browser.android? or browser.name == "Other"
+      id = request.body.read
+      @event = Event.find(id)
+      json = JSON.pretty_generate(@event.attributes)
+      
+      render :text => json
+    else
+      id = params[:id]
+      @event = Event.find(id)
     end
   end
 
-  # GET /events/new
-  # GET /events/new.json
   def new
-    @event = Event.new
+    # @event = Event.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json=> @event }
-    end
+    # respond_to do |format|
+    #   format.html # new.html.erb
+    #   format.json { render :json=> @event }
+    # end
   end
 
   # GET /events/1/edit
@@ -37,34 +45,57 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  # POST /events
-  # POST /events.json
   def create
-    @event = Event.new(params[:event])
+    browser = Browser.new(:ua => request.user_agent)
+    if browser.android? or browser.name == "Other"
+      info = JSON.parse(request.body.read)
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, :notice=> 'Event was successfully created.' }
-        format.json { render :json=> @event, :status=> :created, :location=> @event }
-      else
-        format.html { render :action=> "new" }
-        format.json { render :json=> @event.errors, :status=> :unprocessable_entity }
-      end
+      date = info['time']
+      parse_date = date.split("/")
+
+      table_names = {
+        "name"  => info['name'],
+        "students" => "",
+        "checked_in" => "",
+        "time(1i)" => parse_date[2],
+        "time(2i)" => parse_date[0],
+        "time(3i)" => parse_date[1]
+      }
+      @event = Event.create!(table_names)
+      respond_with @event
+    else
+      @event = Event.create!(params[:event])
+      flash[:notice] = "#{@event.name} was successfully created."
+      redirect_to events_path
     end
   end
 
-  # PUT /events/1
-  # PUT /events/1.json
   def update
-    @event = Event.find(params[:id])
+    browser = Browser.new(:ua => request.user_agent)
+    if browser.android? or browser.name == "Other"
+      info = JSON.parse(request.body.read)
 
-    respond_to do |format|
+      id = info['id']
+      date = info['time']
+      parse_date = date.split("/")
+
+      table_names = {
+        "name"  => info['name'],
+        "students" => info['students'],
+        "checked_in" => info['checked_in'],
+        "time(1i)" => parse_date[2],
+        "time(2i)" => parse_date[0],
+        "time(3i)" => parse_date[1]
+      }
+      @event = Event.find(id)
+      @event.update_attributes!(table_names)
+      respond_with @event
+    else
+      @event = Event.find(params[:id])
       if @event.update_attributes(params[:event])
         format.html { redirect_to @event, :notice=> 'Event was successfully updated.' }
-        format.json { head :ok }
       else
         format.html { render :action=> "edit" }
-        format.json { render :json=> @event.errors, :status=> :unprocessable_entity }
       end
     end
   end
