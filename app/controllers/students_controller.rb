@@ -16,6 +16,7 @@ respond_to :html, :json
     else
       @students = Student.all({:order => params[:sort]})
       @events = Event.all
+      @selected_id=0
       respond_with @students
     end    
   end
@@ -95,13 +96,13 @@ respond_to :html, :json
   end
 
   def studentsList
-    @event = Event.find(params[:id])
+    @selected_id = params[:id]
+    redirect_to students_path and return if @selected_id.eql? "0"
+    @event = Event.find(@selected_id)
     @students = @event.students
     @events = Event.all
-    logger.debug "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-    logger.debug @students
-    #respond_with(@students)
-  render 'index'    
+    
+    render 'index'    
   end
 
   def getStudents
