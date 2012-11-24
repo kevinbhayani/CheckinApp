@@ -1,0 +1,22 @@
+-#  This file is app/views/events/index.html.haml
+%h2 Events
+
+= form_tag events_studentslist_path, :method => :get do
+  Select student name:
+  = select_tag 'id', options_for_select(@students.collect{ |e| [e.name, e.id] }.insert(0, ["All", 0]), selected=@selected_id)
+  = submit_tag 'View Events'
+    
+%table#events
+  %thead
+    %tr
+      %th= link_to "Event Name", events_path({:sort => "name"})
+      %th Location
+      %th Time
+      #Date
+  %tbody
+    - @events.each do |event|
+      %tr
+        %td= event.name
+        %td= event.location
+        %td= event.time
+        #date

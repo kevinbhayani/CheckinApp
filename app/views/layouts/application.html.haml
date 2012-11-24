@@ -14,9 +14,18 @@
       = link_to('Login', new_user_session_path)
 
     = @secure
-
+  
+  %h1 Fried Check-In Web Admin
+ 
+  %table#header
+    %thead
+      %tr
+        %th= link_to('Students', students_path)
+        %th= link_to('Events', events_path)
+        %th= link_to('Volunteers', new_user_session_path)
+       
     - if flash[:notice]
       #notice.message= flash[:notice]
     - elsif flash[:warning]
       #warning.message= flash[:warning]
-    = yield
+  = yield

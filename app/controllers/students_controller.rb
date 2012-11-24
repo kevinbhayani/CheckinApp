@@ -97,7 +97,7 @@ respond_to :html, :json
 
   def studentsList
     @selected_id = params[:id]
-    redirect_to students_path and return if @selected_id.eql? "0"
+    redirect_to students_path and return if @selected_id.eql? "0" or @selected_id.nil?
     @event = Event.find(@selected_id)
     @students = @event.students
     @events = Event.all

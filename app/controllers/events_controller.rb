@@ -5,12 +5,9 @@ respond_to :json, :html
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
-
-#    respond_to do |format|
-#      format.html # index.html.erb
-#      format.json { render :json=> @events }
-#    end
+    @events = Event.all({:order => params[:sort]})
+    @students = Student.all
+    @selected_id=0
     respond_with @events
   end
 
@@ -94,10 +91,16 @@ respond_to :json, :html
   end
   
   def eventsList
-    @student = Student.find(params[:id])
+    @selected_id = params[:id]
+    
+    redirect_to events_path and return if @selected_id.eql? "0" or @selected_id.nil?
+    
+    @student = Student.find(@selected_id)
     @events = @student.events
-    logger.debug "pppppppppppppppppppppppppppppppp"
-    logger.debug @events
+    @students = Student.all
+    #logger.debug "pppppppppppppppppppppppppppppppp"
+    #logger.debug @events
+    render 'index'
   end
   
 end
