@@ -1,0 +1,15 @@
+-#  This file is app/views/movies/index.html.haml
+%h2 Volunteers
+
+%table#users
+  %thead
+    %tr
+      %th= link_to "UserName", users_path({:sort => "username"})
+      %th Email
+      %th PIN
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.username
+        %td= user.email
+        %td= user.encrypted_password
