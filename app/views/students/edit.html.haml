@@ -1,6 +1,6 @@
 %h2 Edit Student
 
-= form_tag students_path(@student), :method => :put do
+= form_tag student_path(@student), :method => :put do
 
   = label :student, :name, 'Name'
   = text_field :student, :name
@@ -31,4 +31,5 @@
   = label :student, :parentPhone, 'Parent\'s Phone'
   = telephone_field :student, :parentPhone
 
-  = button_to 'Update', student_path(@student), :method => :update
+  = submit_tag 'update'
+  

@@ -5,16 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-students = [{"name" => "Tom"},
-            {"name" => "Kevin"},
-            {"name" => "Jack"},
-            {"name" => "Sabrina"},
-            {"name" => "Roberts"},
-            {"name" => "George"},
-            {"name" => "Angelina"},
-            {"name" => "Katie"},
-            {"name" => "Bob"},
-            {"name" => "Mike"}]
+students = [{"name" => "Tom", "birthdate" => DateTime.parse("12/12/1991")},
+            {"name" => "Kevin", "birthdate" => DateTime.parse("12/12/1991")},
+            {"name" => "Jack", "birthdate" => DateTime.parse("12/12/1991")},
+            {"name" => "Sabrina", "birthdate" => DateTime.parse("12/12/1991")},
+            {"name" => "Roberts", "birthdate" => DateTime.parse("12/12/1991")},
+            {"name" => "George", "birthdate" => DateTime.parse("12/12/1991")},
+            {"name" => "Angelina", "birthdate" => DateTime.parse("12/12/1991")},
+            {"name" => "Katie", "birthdate" => DateTime.parse("12/12/1991")},
+            {"name" => "Bob", "birthdate" => DateTime.parse("12/12/1991")},
+            {"name" => "Mike", "birthdate" => DateTime.parse("12/12/1991")}]
 
 events = [{"name" => "Thanksgiving", "time" => "1201", "location" => "a"},
           {"name" => "Independence Day", "time" => "1202", "location" => "b"},
