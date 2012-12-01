@@ -6,14 +6,17 @@ class CheckinController < ApplicationController
 respond_to :html, :json
   
   def index
+    @admin_template = false 
     @students = Student.all
     @events = Event.all
     @selected_id=0
     
-    respond_with @students 
+    respond_with(@students)
   end
 
   def create
+    @admin_template = false 
+    redirect_to checkin_index_path and show_error_message and return if params[:student_id].eql? "0" or params[:event_id].eql? "0"
     @students = Student.all
     @events = Event.all
     @student = Student.find params[:student_id]
@@ -29,4 +32,9 @@ respond_to :html, :json
     
     render 'index'
   end
+
+  def show_error_message
+    flash[:notice] = "Error: Select valid Student and Event"
+  end
+
 end
