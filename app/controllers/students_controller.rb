@@ -68,6 +68,7 @@ respond_to :html, :json
         "birthdate(2i)" => parse_date[0],
         "birthdate(3i)" => parse_date[1]
       }
+      
       @student = Student.create!(table_names)
       respond_with @student
     else

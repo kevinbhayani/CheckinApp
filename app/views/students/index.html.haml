@@ -3,7 +3,7 @@
 
 = form_tag students_eventslist_path, :method => :get do
   Student Events:
-  = select_tag 'id', options_for_select(@events.collect{ |e| [e.name, e.id] }.insert(0, ["All", 0]), selected=@selected_id)
+  = select_tag 'id', options_for_select(@events.collect{ |e| [e.name + "  --  " + e.time.strftime("%B %d"), e.id] }.insert(0, ["All", 0]), selected=@selected_id)
   = submit_tag 'View Students'
     
 %table#students

@@ -11,12 +11,12 @@
     %tr
       %th= link_to "Event Name", events_path({:sort => "name"})
       %th Location
-      %th Time
+      %th Date
       #Date
   %tbody
     - @events.each do |event|
       %tr
         %td= event.name
         %td= event.location
-        %td= event.time
+        %td= event.time.strftime("%B %d, %Y")
         #date

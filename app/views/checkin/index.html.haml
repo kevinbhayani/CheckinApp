@@ -1,0 +1,9 @@
+
+%h2 CheckIn
+
+= form_tag checkin_index_path, :method => :post do
+  Student Events:
+  = select_tag 'event_id', options_for_select(@events.collect{ |e| [e.name + "  --  " + e.time.strftime("%B %d"), e.id] }.insert(0, ["All", 0]), selected=@selected_id)
+  Select student name:
+  = select_tag 'student_id', options_for_select(@students.collect{ |e| [e.name, e.id] }.insert(0, ["All", 0]), selected=@selected_id)
+  = submit_tag 'Check In'
