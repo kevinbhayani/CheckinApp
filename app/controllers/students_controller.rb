@@ -7,7 +7,7 @@ respond_to :html, :json
   
   def index
     browser = Browser.new(:ua => request.user_agent)
-    if browser.android? or browser.name == "Other"
+    if browser.name == "Other"
       
       json = JSON.pretty_generate(@students.map {|i| i.attributes })
       
@@ -23,7 +23,7 @@ respond_to :html, :json
 
   def show
     browser = Browser.new(:ua => request.user_agent)
-       if browser.android? or browser.name == "Other"
+    if browser.name == "Other"
       id = request.body.read
       @student = Student.find(id)
       json = JSON.pretty_generate(@student.attributes)
@@ -47,7 +47,7 @@ respond_to :html, :json
     #logger.debug request.user_agent
 
     browser = Browser.new(:ua => request.user_agent)
-    if browser.android? or browser.name == "Other"
+    if browser.name == "Other"
       student_info = JSON.parse(request.body.read)
       #Need to optimize this
       #Will have to change json key names or database table names
