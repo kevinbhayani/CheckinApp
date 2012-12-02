@@ -18,7 +18,8 @@ respond_to :html, :json
     # if browser.name == "other"
       checkin_info = JSON.parse(request.body.read)
       @checkin = StudentsEvent.create!(checkin_info)
-      respond_with @student
+      render :json => @checkin
+      logger.debug "tttttttttttttttttttttt"
     # else
       # @admin_template = false 
       # redirect_to checkin_index_path and show_error_message and return if params[:student_id].eql? "0" or params[:event_id].eql? "0"
@@ -43,4 +44,7 @@ respond_to :html, :json
     # flash[:notice] = "Error: Select valid Student and Event"
   end
 
+  def show
+  
+  end
 end
