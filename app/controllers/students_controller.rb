@@ -101,8 +101,7 @@ respond_to :html, :json
     redirect_to students_path and return if @selected_id.eql? "0" or @selected_id.nil?
     @event = Event.find(@selected_id)
     @students = @event.students
-    @events = Event.all
-    
+    @events = Event.all    
     render 'index'    
   end
 
