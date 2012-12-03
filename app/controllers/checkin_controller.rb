@@ -28,6 +28,7 @@ respond_to :html, :json
       @studentsEvents = StudentsEvent.all 
       if checkin_info['checkin_status'].eql? true
         @checkin = StudentsEvent.create!(checkin_info)
+        @checkin["student_name"] = Student.find(checkin_info['student_id']).name
         render :json => @checkin
       
       elsif checkin_info['checkin_status'].eql? false
