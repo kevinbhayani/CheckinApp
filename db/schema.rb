@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121123205146) do
+ActiveRecord::Schema.define(:version => 20121129000825) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
     t.datetime "time"
-    t.text     "students"
+    t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "checked_in"
@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(:version => 20121123205146) do
 
   create_table "students", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "age"
+    t.text     "description"
+    t.datetime "checkin_date"
     t.string   "notes"
     t.string   "parentName"
     t.string   "parentAddress"
@@ -34,6 +35,15 @@ ActiveRecord::Schema.define(:version => 20121123205146) do
     t.string   "contactPhone"
     t.datetime "birthdate"
     t.string   "grade"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "students_events", :force => true do |t|
+    t.integer "student_id"
+    t.integer "event_id"
+    t.string  "checkin_time"
+    t.string  "checkout_time"
   end
 
   create_table "users", :force => true do |t|

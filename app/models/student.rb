@@ -1,4 +1,6 @@
 class Student < ActiveRecord::Base
+  has_many :students_events
+  has_many :events, :through => :students_events
 #validates :name, :presence => true
 #validates :parentName, :presence => true
 #validates :parentAddress, :presence => true

@@ -1,4 +1,4 @@
-require 'json/pure'
+require 'json'
 require 'browser'
 
 class StudentsController < ApplicationController
@@ -6,20 +6,25 @@ respond_to :html, :json
   
   def index
     browser = Browser.new(:ua => request.user_agent)
-    @students = Student.all({:order => params[:sort]}) 
-    if browser.android? or browser.name == "Other"
+#    @students = Student.all({:order => params[:sort]}) 
+#    if browser.android? or browser.name == "Other"
+    if browser.name == "Other"
+      
       json = JSON.pretty_generate(@students.map {|i| i.attributes })
       
       render :text => json
       #respond_with json  
     else
+      @students = Student.all({:order => params[:sort]})
+      @events = Event.all
+      @selected_id=0
       respond_with @students
     end    
   end
 
   def show
     browser = Browser.new(:ua => request.user_agent)
-       if browser.android? or browser.name == "Other"
+    if browser.name == "Other"
       id = request.body.read
       @student = Student.find(id)
       json = JSON.pretty_generate(@student.attributes)
@@ -29,6 +34,7 @@ respond_to :html, :json
     else
       id = params[:id]
       @student = Student.find(id)
+      respond_with @student
     end    
   end
 
@@ -41,7 +47,7 @@ respond_to :html, :json
     #logger.debug request.user_agent
 
     browser = Browser.new(:ua => request.user_agent)
-    if browser.android? or browser.name == "Other"
+    if browser.name == "Other"
       student_info = JSON.parse(request.body.read)
       #Need to optimize this
       #Will have to change json key names or database table names
@@ -62,6 +68,7 @@ respond_to :html, :json
         "birthdate(2i)" => parse_date[0],
         "birthdate(3i)" => parse_date[1]
       }
+      
       @student = Student.create!(table_names)
       respond_with @student
     else
@@ -87,6 +94,15 @@ respond_to :html, :json
     @student.update_attributes!(params[:student])
     flash[:notice] = "#{@student.name} was successfully updated."
     redirect_to student_path(@student)
+  end
+
+  def studentsList
+    @selected_id = params[:id]
+    redirect_to students_path and return if @selected_id.eql? "0" or @selected_id.nil?
+    @event = Event.find(@selected_id)
+    @students = @event.students
+    @events = Event.all    
+    render 'index'    
   end
 
   def getStudents
