@@ -3,7 +3,7 @@ class CreateStudentsEvents < ActiveRecord::Migration
     create_table :students_events do |t|
       t.references :student
       t.references :event
-      t.boolean :checkin_status, :default => true
+      t.boolean :checkin_status, :default => "true"
     end
   end
 end

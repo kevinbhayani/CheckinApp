@@ -7,5 +7,3 @@
   Select student name:
   = select_tag 'student_id', options_for_select(@students.collect{ |e| [e.name, e.id] }.insert(0, ["Select Student", 0]), selected=@selected_id)
   = submit_tag 'Check In'
-
-
