@@ -1,4 +1,3 @@
-#student_controller
 require 'json'
 require 'browser'
 
@@ -7,6 +6,8 @@ respond_to :html, :json
   
   def index
     browser = Browser.new(:ua => request.user_agent)
+#    @students = Student.all({:order => params[:sort]}) 
+#    if browser.android? or browser.name == "Other"
     if browser.name == "Other"
       
       json = JSON.pretty_generate(@students.map {|i| i.attributes })
@@ -33,8 +34,7 @@ respond_to :html, :json
     else
       id = params[:id]
       @student = Student.find(id)
-      #json = JSON.pretty_generate(@student.attributes)
-      #render :text => json#@student.attributes
+      respond_with @student
     end    
   end
 

@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20121129000825) do
     t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "checked_in"
   end
 
   create_table "students", :force => true do |t|
