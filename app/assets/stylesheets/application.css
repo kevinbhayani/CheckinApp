@@ -33,7 +33,7 @@ h1.name {
     font-size: 2em;
     font-style: normal;
 }
-table#students, table#events , table#users{
+table#students, table#events , table#users, table#studentsEvent{
     margin: 10px;
     border-collapse: collapse;
     width: 100%;
@@ -41,7 +41,7 @@ table#students, table#events , table#users{
     background-color: #f4f4f4;
 
 }
-table#students th, table#events th, table#users th {
+table#students th, table#events th, table#users th, table#studentsEvent th {
     border: 2px solid white;
     font-weight: bold;
     background-color: #c6c6c6;
@@ -57,7 +57,7 @@ table#header {
 	background-color: grey;
 	color: white;
 }
-table#students th, table#students td, table#events th, table#events td, table#users th, table#users td {
+table#students th, table#students td, table#events th, table#events td, table#users th, table#users td, table#studentsEvent th, table#studentsEvent td {
     padding: 4px;
     text-align: left;
 }

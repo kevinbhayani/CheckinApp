@@ -41,8 +41,7 @@ ActiveRecord::Schema.define(:version => 20121129000825) do
   create_table "students_events", :force => true do |t|
     t.integer "student_id"
     t.integer "event_id"
-    t.string  "checkin_time"
-    t.string  "checkout_time"
+    t.boolean "checkin_status", :default => true
   end
 
   create_table "users", :force => true do |t|

@@ -7,3 +7,17 @@
   Select student name:
   = select_tag 'student_id', options_for_select(@students.collect{ |e| [e.name, e.id] }.insert(0, ["Select Student", 0]), selected=@selected_id)
   = submit_tag 'Check In'
+
+%table#studentsEvent
+  %thead
+    %tr
+      %th Student Name
+      %th Event Name
+      %th Checked In
+  %tbody
+    - @studentsEvents.each do |student|
+      %tr
+        %td= Student.find(student.student_id).name
+        %td= Event.find(student.event_id).name
+        %td= student.checkin_status
+        %td= button_to "Check Out", checkin_index_path({:checkout => student.id})

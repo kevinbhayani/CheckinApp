@@ -74,6 +74,7 @@ respond_to :html, :json
     else
       @student = Student.create!(params[:student])
       flash[:notice] = "#{@student.name} was successfully created."
+      #Change for new student recd from checkin
       redirect_to students_path
     end
   end
