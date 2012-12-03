@@ -33,8 +33,7 @@ respond_to :html, :json
     else
       id = params[:id]
       @student = Student.find(id)
-      #json = JSON.pretty_generate(@student.attributes)
-      #render :text => json#@student.attributes
+      respond_with @student
     end    
   end
 
