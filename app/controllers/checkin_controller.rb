@@ -32,7 +32,6 @@ respond_to :html, :json
       
       elsif checkin_info['checkin_status'].eql? "false"
         @checkout = StudentsEvent.find checkin_info['checkout_id']
-        logger.debug "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"
         @checkout.checkin_status = false
         @checkout.save
         render :json => @checkout 
