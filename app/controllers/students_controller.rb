@@ -5,21 +5,13 @@ class StudentsController < ApplicationController
 respond_to :html, :json
   
   def index
-    browser = Browser.new(:ua => request.user_agent)
+#    browser = Browser.new(:ua => request.user_agent)
 #    @students = Student.all({:order => params[:sort]}) 
 #    if browser.android? or browser.name == "Other"
-    if browser.name == "Other"
-      
-      json = JSON.pretty_generate(@students.map {|i| i.attributes })
-      
-      render :text => json
-      #respond_with json  
-    else
-      @students = Student.all({:order => params[:sort]})
-      @events = Event.all
-      @selected_id=0
-      respond_with @students
-    end    
+    @students = Student.all({:order => params[:sort]})
+    @events = Event.all
+    @selected_id=0
+    respond_with @students
   end
 
   def show

@@ -1,0 +1,33 @@
+%h2 Create New Student
+
+= form_tag checkin_addstudent_path, :method => :post do
+
+  = label :student, :name, 'Name'
+  = text_field :student, :name
+
+  = label :student, :grade, 'Grade'
+  = text_field :student, :grade
+
+  = label :student, :birthdate, 'Birthdate'
+  = date_select :student, :birthdate, :start_year => 1900
+
+  = label :student, :notes, 'Notes'
+  = text_field :student, :notes
+
+  = label :student, :contactName, 'Contact\'s Name'
+  = text_field :student, :contactName
+
+  = label :student, :contactPhone, 'Contact\'s Phone Number'
+  = telephone_field :student, :contactPhone
+
+
+  = label :student, :parentName, 'Parent\'s Name'
+  = text_field :student, :parentName
+
+  = label :student, :parentAddress, 'Parent\'s Address'
+  = text_field :student, :parentAddress
+
+  = label :student, :parentPhone, 'Parent\'s Phone'
+  = telephone_field :student, :parentPhone
+
+  = submit_tag 'Save Changes'

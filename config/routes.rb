@@ -4,6 +4,7 @@ Friedcheckin::Application.routes.draw do
   match '/users' => 'users#index', :via => :get 
   match '/students/eventslist' => 'students#studentsList', :via => :get 
   match '/events/studentslist' => 'events#eventsList', :via => :get
+  match '/checkin/addstudent' => 'checkin#addStudent', :via => :post 
 
   resources :students 
   resources :events

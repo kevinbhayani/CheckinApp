@@ -7,7 +7,9 @@ respond_to :html, :json
   
   def index
       @admin_template = false
-      @studentsEvents = StudentsEvent.all
+      @studentsEvents = StudentsEvent.all.select{|u| u.checkin_status == true}
+      # @studentsEvents.collect{|u| u["student_name"] = Student.find(u.student_id).name}
+      # @studentsEvents = StudentsEvent.all
       @students = Student.all
       @events = Event.all
       @selected_id=0
@@ -15,24 +17,30 @@ respond_to :html, :json
   end
 
   def create
+      # browser = Browser.new(:ua => request.user_agent)
       @students = Student.all
       @events = Event.all
-      @studentsEvents = StudentsEvent.all
+      # @studentsEvents = StudentsEvent.all.select{|u| u.checkin_status == true}
+      # @studentsEvents.collect{|u| u["student_name"] = Student.find(u.student_id).name}
 
-      checkin_info = "1"#JSON.parse(request.body.read)
- 
-      if checkin_info['checkin_status'].eql? true
-        @checkin = StudentsEvent.create!(checkin_info)
-        #@checkin["student_name"] = Student.find(checkin_info['student_id']).name
-        render :json => @checkin
+      if browser.name == "Other"
+        
+        checkin_info = JSON.parse(request.body.read)
+          
+        if checkin_info['checkin_status'].eql? true
+          @checkin = StudentsEvent.create!(checkin_info)
+          #@checkin["student_name"] = Student.find(checkin_info['student_id']).name
+          render :json => @checkin
       
-      elsif checkin_info['checkin_status'].eql? false
-        @checkout = StudentsEvent.find checkin_info['checkout_id']
-        @checkout.checkin_status = false
-        @checkout.save
-        render :json => @checkout 
+        elsif checkin_info['checkin_status'].eql? false
+          @checkout = StudentsEvent.find checkin_info['checkout_id']
+          @checkout.checkin_status = false
+          @checkout.save
+          render :json => @checkout 
+        end
+        
       else        
-       
+        
         if not params[:checkout].nil?
           @change = StudentsEvent.find params[:checkout]
           @change.checkin_status = false
@@ -59,4 +67,13 @@ respond_to :html, :json
     flash[:notice] = "Error: Select valid Student and Event"
   end
 
+  def new
+    @admin_template = false
+  end
+  
+  def addStudent
+    @student = Student.create!(params[:student])
+    flash[:notice] = "#{@student.name} was successfully created."
+    redirect_to checkin_index_path
+  end
 end
