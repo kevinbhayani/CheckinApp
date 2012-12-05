@@ -14,5 +14,5 @@ Friedcheckin::Application.routes.draw do
   match ':controller(/:action(/:name/:pin))'
   match ':controller(/:action(/:getStudents))'
   match ':controller(/:action(/:newStudent/:student))'
-  root :to => redirect('/friedcheckin/students')
+  root :to => redirect('/students')
 end
