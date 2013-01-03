@@ -13,6 +13,7 @@ respond_to :html, :json
       @students = Student.all
       @events = Event.all
       @selected_id=0
+      
       respond_with @studentsEvents     
   end
 

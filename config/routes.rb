@@ -6,6 +6,8 @@ Friedcheckin::Application.routes.draw do
   match '/events/studentslist' => 'events#eventsList', :via => :get
   match '/checkin/addstudent' => 'checkin#addStudent', :via => :post 
 
+  match "/auth/:provider/callback" => "sessions#create"
+
   resources :students 
   resources :events
   resources :volunteers
