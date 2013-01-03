@@ -26,7 +26,7 @@ group :assets do
 end
 
 group :production do
-  gem 'mysql'
+  gem 'pg'
 end
 
 gem 'jquery-rails'
